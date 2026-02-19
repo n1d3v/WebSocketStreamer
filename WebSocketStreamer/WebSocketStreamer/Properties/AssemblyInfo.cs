@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WebSocketStreamer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("WebSocketStreamer is a simple wrapper over Windows.Networking.Sockets for Windows Phone 8.1 (WinRT)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("patricktbp")]
 [assembly: AssemblyProduct("WebSocketStreamer")]
-[assembly: AssemblyCopyright("Copyright ©  2026")]
+[assembly: AssemblyCopyright("Licensed under the Apache License 2.0.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
