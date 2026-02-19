@@ -9,10 +9,13 @@ namespace WebSocketStreamer.Networking
         private readonly int _maxRetries;
         private readonly int _baseDelayMs;
 
+        public event Action Reconnected;
+        public event Action Failed;
+
         public WebSocketStreamerReconnection(WebSocketStreamerClient client, int maxRetries = 5, int baseDelayMs = 2000)
         {
             if (client == null)
-                throw new ArgumentNullException("client");
+                throw new ArgumentNullException("You are missing the WebSocket client, please attach it to the function.");
 
             _client = client;
             _maxRetries = maxRetries;
@@ -40,9 +43,14 @@ namespace WebSocketStreamer.Networking
                 }
                 catch
                 {
-                    // Ignore errors and keep trying to reconnect!
+                    // Ignore errors, keep trying over and over again...
                 }
             }
+
+            if (_client.IsConnected)
+                Reconnected?.Invoke();
+            else
+                Failed?.Invoke();
         }
     }
 }
