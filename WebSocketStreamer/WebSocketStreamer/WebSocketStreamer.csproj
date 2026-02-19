@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{248fb639-9ade-4e75-aa45-a9e139f5b34d}</ProjectGuid>
+    <ProjectGuid>{248FB639-9ADE-4E75-AA45-A9E139F5B34D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebSocketStreamer</RootNamespace>
@@ -82,8 +82,14 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Networking\WebSocketStreamerReceive.cs" />
+    <Compile Include="Networking\WebSocketStreamerSend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebSocketStreamerClient.cs" />
+    <Compile Include="WebSocketStreamerErrorHandler.cs" />
+    <Compile Include="WebSocketStreamerInit.cs" />
+    <Compile Include="Networking\WebSocketStreamerReconnection.cs" />
+    <Compile Include="WebSocketStreamerSettings.cs" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
@@ -99,5 +105,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
 </Project>
