@@ -18,6 +18,8 @@ namespace WebSocketStreamer
         public bool IsConnected { get; private set; }
         private readonly Dictionary<string, string> _headers = new Dictionary<string, string>();
 
+        public event ClientClosedHandler OnClientClosedEvent;
+
         public WebSocketStreamerClient(string url)
         {
             _url = url;
@@ -36,6 +38,7 @@ namespace WebSocketStreamer
             _socket.Closed += (sender, args) =>
             {
                 Closed?.Invoke(args.Code, args.Reason);
+                OnClientClosedEvent?.Invoke(args.Code, args.Reason);
             };
         }
 

@@ -3,6 +3,8 @@ using System.Diagnostics;
 
 namespace WebSocketStreamer
 {
+    public delegate void ClientClosedHandler(ushort code, string reason);
+
     public class WebSocketStreamerErrorHandler : IDisposable
     {
         private readonly WebSocketStreamerClient _client;
@@ -36,7 +38,6 @@ namespace WebSocketStreamer
                 LogError(true, $"WebSocket closed normally (1000): Reason: {reason}");
             }
         }
-
 
         private void LogError(bool useDefaultLogging, string message)
         {
