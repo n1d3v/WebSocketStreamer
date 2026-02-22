@@ -29,7 +29,7 @@ namespace WebSocketStreamer.Networking
             await AttemptReconnect();
         }
 
-        private async Task AttemptReconnect()
+        public async Task AttemptReconnect()
         {
             int retries = 0;
 
