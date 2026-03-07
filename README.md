@@ -29,6 +29,9 @@ _client.AddHeader("Origin", "https://example.com");
 // This is to receive data and use it later in a function.
 // In this case, the function is HandleMessage.
 _client.MessageReceived += HandleMessage;
+// If you use something like compression in your WebSocket messages
+// You can make it so you can receive them too, like Discord's zlib-stream.
+_client.BinaryMessageReceived += HandleMessage;
 
 // Connects the WebSocket client to the URL you used earlier.
 await _client.Connect();
