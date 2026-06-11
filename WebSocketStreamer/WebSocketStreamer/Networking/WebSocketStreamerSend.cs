@@ -8,7 +8,9 @@ namespace WebSocketStreamer.Networking
 {
     public class WebSocketStreamerSend : IDisposable
     {
+        private readonly MessageWebSocket _socket;
         private readonly DataWriter _writer;
+
         private readonly SemaphoreSlim _lock = new SemaphoreSlim(1, 1);
 
         public WebSocketStreamerSend(MessageWebSocket socket)
@@ -16,6 +18,7 @@ namespace WebSocketStreamer.Networking
             if (socket == null)
                 throw new ArgumentNullException("socket");
 
+            _socket = socket;
             _writer = new DataWriter(socket.OutputStream);
         }
 
@@ -25,7 +28,26 @@ namespace WebSocketStreamer.Networking
 
             try
             {
+                _socket.Control.MessageType = SocketMessageType.Utf8;
                 _writer.WriteString(message);
+
+                await _writer.StoreAsync();
+            }
+            finally
+            {
+                _lock.Release();
+            }
+        }
+
+        public async Task SendBinary(byte[] data)
+        {
+            await _lock.WaitAsync();
+
+            try
+            {
+                _socket.Control.MessageType = SocketMessageType.Binary;
+                _writer.WriteBytes(data);
+
                 await _writer.StoreAsync();
             }
             finally
